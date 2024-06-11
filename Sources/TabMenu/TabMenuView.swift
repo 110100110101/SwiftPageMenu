@@ -73,6 +73,18 @@ class TabMenuView: UIView {
 
         return collectionView
     }()
+    
+    fileprivate lazy var lineView: UIView = {
+        
+        let lineView = UIView()
+        
+        lineView.backgroundColor = UIColor(red: 203.0 / 255.0,
+                                           green: 210.0 / 255.0,
+                                           blue: 223.0 / 255.0,
+                                           alpha: 1.0)
+        
+        return lineView
+    }()
 
     fileprivate var cursorView: TabMenuItemCursor!
 
@@ -98,6 +110,15 @@ class TabMenuView: UIView {
         self.collectionView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor).isActive = true
         self.collectionView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor).isActive = true
         self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+        
+        // line view
+        self.contentView.addSubview(self.lineView)
+        self.lineView.translatesAutoresizingMaskIntoConstraints = false
+        self.lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        self.lineView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor).isActive = true
+        self.lineView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor).isActive = true
+        self.lineView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+        
         self.cellForSize = TabMenuItemCell()
         self.collectionView.scrollsToTop = false
         self.collectionView.reloadData()
